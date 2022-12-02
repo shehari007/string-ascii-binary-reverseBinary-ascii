@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.util.Arrays;
 
 public class Converter {
+    
 
     public static String reverseString(String str) {
         StringBuilder sb = new StringBuilder(str);
@@ -44,6 +45,7 @@ public class Converter {
         }
         return returnString;
     }
+ 
 
     public static void main(String[] args) throws UnsupportedEncodingException {
         String metin;
@@ -55,7 +57,8 @@ public class Converter {
         metin = scan.nextLine();
         byte[] bytes = metin.getBytes("US-ASCII");
         metin_binary = strToBinary(metin);
-        metin_tersBinary = reverseString(metin_binary);
+        metin_tersBinary = metin_binary.replaceAll("0","x").replaceAll("1","0").replaceAll("x","1");
+        //metin_tersBinary = reverseString(metin_binary);
         byte[] bytes2 = metin_tersBinary.getBytes("US-ASCII");
 
         System.out.println("Girdiginiz_metinin : " + metin + "\nASCII: " + Arrays.toString(bytes) + "\nIKI Bitlik: " + metin_binary + "\nTers_IKI_Bitlik: "
