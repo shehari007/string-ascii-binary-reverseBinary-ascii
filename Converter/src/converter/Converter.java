@@ -46,12 +46,19 @@ public class Converter {
         return returnString;
     }
  
-
+    static String convert(byte[] data) {
+    StringBuilder sb = new StringBuilder(data.length);
+    for (int i = 0; i < data.length; ++ i) {
+        if (data[i] < 0) throw new IllegalArgumentException();
+        sb.append((char) data[i]);
+    }
+    return sb.toString();
+}
     public static void main(String[] args) throws UnsupportedEncodingException {
         String metin;
         String metin_binary;
         String metin_tersBinary;
-
+       
         Scanner scan = new Scanner(System.in);
         System.out.println("Metin: ");
         metin = scan.nextLine();
@@ -60,9 +67,9 @@ public class Converter {
         metin_tersBinary = metin_binary.replaceAll("0","x").replaceAll("1","0").replaceAll("x","1");
         //metin_tersBinary = reverseString(metin_binary);
         byte[] bytes2 = metin_tersBinary.getBytes("US-ASCII");
-
+        String ss = convert(bytes2);
         System.out.println("Girdiginiz_metinin : " + metin + "\nASCII: " + Arrays.toString(bytes) + "\nIKI Bitlik: " + metin_binary + "\nTers_IKI_Bitlik: "
-                + metin_tersBinary + "\nBinary_TO_ASCII: " + Arrays.toString(bytes2));
+                + metin_tersBinary + "\nBinary_TO_ASCII: " + Arrays.toString(bytes2)+"\nASCII_To_String: "+ss);
     }
 
 }
